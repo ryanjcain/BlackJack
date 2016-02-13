@@ -161,7 +161,4 @@ git checkout <branch name>
 git merge <origin repository>
 
 """
-"prem's testicles lala land"
-'test comment 500'
-'test comment 123'
-'Test for Sam merge'
+"deleted all the other tests"
