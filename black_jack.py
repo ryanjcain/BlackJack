@@ -160,5 +160,5 @@ git checkout <branch name>
 
 git merge <origin repository>
 """
-'test comment 3'
+'test comment 500'
 'test comment 2'
