@@ -160,5 +160,6 @@ git checkout <branch name>
 
 git merge <origin repository>
 """
+'prem test'
 'test comment 500'
 'test comment 123'
