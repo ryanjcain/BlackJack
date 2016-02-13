@@ -160,5 +160,6 @@ git checkout <branch name>
 
 git merge <origin repository>
 """
+"Merge Conflict Test"
 'test comment 500'
 'test comment 123'
