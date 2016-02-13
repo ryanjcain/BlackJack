@@ -161,4 +161,4 @@ git checkout <branch name>
 git merge <origin repository>
 
 """
-"deleted all the other tests"
+"merge conflict"
