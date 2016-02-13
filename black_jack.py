@@ -162,9 +162,4 @@ git merge <origin repository>
 
 """
 
-"Merge Conflict Test"
-'Ryan TEST'
-"prem's testicles lala land"
-'test comment 500'
-'test comment 123'
-'Test for Sam merge'
+"deleted all the other tests"
