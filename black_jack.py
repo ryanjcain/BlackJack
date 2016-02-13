@@ -159,6 +159,6 @@ git branch <new branch name>
 git checkout <branch name>
 
 git merge <origin repository>
+
 """
-'test comment 500'
-'test comment 123'
+"deleted all the other tests"
