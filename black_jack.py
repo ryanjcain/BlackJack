@@ -165,6 +165,3 @@ git checkout <branch name>
 
 git merge <origin repository>
 """
-hand = Hand()
-
-#checking merge
