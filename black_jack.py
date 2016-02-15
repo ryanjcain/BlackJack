@@ -91,6 +91,8 @@ class Hand(Deck):
         self.cards = []
         self.label = label
 
+    for i in range(3):
+        add_card(self, card)
 
 
 class Player(Deck):
@@ -99,8 +101,6 @@ class Player(Deck):
     def __init__(self, label=''):
         self.cards = []
         self.label = label
-
-
 
 
 class Dealer(Deck):
@@ -112,7 +112,12 @@ class Dealer(Deck):
         self.cards = []
         self.label = label
 
+class UI(object):
 
+    """Gives player choice of hit or stay
+    and determines win or loss"""
+
+    def __init__(self):
 
 
 
@@ -159,6 +164,4 @@ git branch <new branch name>
 git checkout <branch name>
 
 git merge <origin repository>
-
 """
-"creating merge conflict for ryanjcain"
