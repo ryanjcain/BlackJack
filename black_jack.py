@@ -118,7 +118,7 @@ class UI(object):
     and determines win or loss"""
 
     def __init__(self):
-        
+
 
 
 def find_defining_class(obj, method_name):
@@ -166,3 +166,5 @@ git checkout <branch name>
 git merge <origin repository>
 """
 hand = Hand()
+
+#checking merge
