@@ -91,6 +91,8 @@ class Hand(Deck):
         self.cards = []
         self.label = label
 
+    for i in range(3):
+        add_card(self, card)
 
 
 class Player(Deck):
@@ -99,8 +101,6 @@ class Player(Deck):
     def __init__(self, label=''):
         self.cards = []
         self.label = label
-
-
 
 
 class Dealer(Deck):
@@ -112,8 +112,13 @@ class Dealer(Deck):
         self.cards = []
         self.label = label
 
+class UI(object):
 
+    """Gives player choice of hit or stay
+    and determines win or loss"""
 
+    def __init__(self):
+        
 
 
 def find_defining_class(obj, method_name):
@@ -159,9 +164,5 @@ git branch <new branch name>
 git checkout <branch name>
 
 git merge <origin repository>
-
 """
-"prem's testicles lala land"
-'test comment 500'
-'test comment 123'
-'test comment sam'
+hand = Hand()
