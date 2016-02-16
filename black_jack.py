@@ -112,14 +112,6 @@ class Dealer(Deck):
         self.cards = []
         self.label = label
 
-class UI(object):
-
-    """Gives player choice of hit or stay
-    and determines win or loss"""
-
-    def __init__(self):
-
-
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
