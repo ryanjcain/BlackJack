@@ -171,7 +171,8 @@ if __name__ == '__main__':
 
 test_shoe = Shoe()
 print test_shoe
-# pushing master
+
+
 """
 git add <file name> or -A or .
 git commit -m "Message"
