@@ -174,6 +174,7 @@ test_shoe = Shoe()
 print test_shoe
 
 #new check
+#new new check
 """
 git add <file name> or -A or .
 git commit -m "Message"
