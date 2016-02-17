@@ -100,7 +100,6 @@ class Player(Deck):
         self.cards = []
         self.label = label
 
-
 class Dealer(Deck):
 
     """Represents the dealer's hand and the house's
@@ -172,7 +171,7 @@ if __name__ == '__main__':
 
 test_shoe = Shoe()
 print test_shoe
-
+# pushing master
 """
 git add <file name> or -A or .
 git commit -m "Message"
