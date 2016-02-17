@@ -91,8 +91,6 @@ class Hand(Deck):
         self.cards = []
         self.label = label
 
-    for i in range(3):
-        add_card(self, card)
 
 
 class Player(Deck):
@@ -111,6 +109,39 @@ class Dealer(Deck):
     def __init__(self, label=''):
         self.cards = []
         self.label = label
+
+class Shoe(object):
+    """ The shoe object is a collection of 6 decks """
+
+    def __init__(
+        self, deck1=Deck(), deck2=Deck(), deck3=Deck(),
+        deck4=Deck(), deck5=Deck(), deck6=Deck()
+        ):
+
+        self.deck1 = deck1
+        self.deck2 = deck2
+        self.deck3 = deck3
+        self.deck4 = deck4
+
+        deck1.shuffle()
+        deck2.shuffle()
+        deck3.shuffle()
+        deck4.shuffle()
+
+        self.cards = [
+            deck1.cards,
+            deck2.cards,
+            deck3.cards,
+            deck4.cards
+                    ]
+
+    def __str__(self):
+        res = []
+        for deck in self.cards:
+            for card in deck:
+                res.append(str(card))
+        return '\n'.join(res)
+
 
 
 def find_defining_class(obj, method_name):
@@ -139,7 +170,8 @@ if __name__ == '__main__':
     print hand
 
 
-
+test_shoe = Shoe()
+print test_shoe
 
 """
 git add <file name> or -A or .
