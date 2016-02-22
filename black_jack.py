@@ -135,18 +135,25 @@ class Game(object):
         '''
 
     def play(self):
-        deck = Deck()
+        shoe = Shoe()
         hand = Hand()
         card = Card()
+        score = 0
         if raw_input("Do you want to play? (Y) or (N) ") == 'Y':
-            deck.move_cards(hand, 2)
+            shoe.shuffle()
+            shoe.move_cards(hand, 2)
             #creating starting hand
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
             #making hand.cards list into string to print
-            if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
 
-                deck.move_cards(hand, 1)
-                print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+            while score < 21:
+                if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
+                    shoe.move_cards(hand, 1)
+                    print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+
+                    for card in hand.cards:
+                        if card.rank = 
+                        score += card.rank
             else:
                 score = 0 #determine how close to 21
                 for card in hand.cards:
@@ -155,8 +162,8 @@ class Game(object):
         else:
             print "Guess you won't play with us :("
 
-#game = Game()
-#game.play()
+game = Game()
+game.play()
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
