@@ -142,7 +142,12 @@ class Shoe(object):
                 res.append(str(card))
         return '\n'.join(res)
 
-
+class Game(object):
+    def __init__(self, label=''):
+        self.cards = []
+        self.label = label
+        
+    print "your hand is: %d, %d" % Hand().self.cards[0], Hand().UI.cards[1]
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
@@ -173,9 +178,6 @@ if __name__ == '__main__':
 test_shoe = Shoe()
 print test_shoe
 
-#new check
-#new new check
-#final check
 """
 git add <file name> or -A or .
 git commit -m "Message"
