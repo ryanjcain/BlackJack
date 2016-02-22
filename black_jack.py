@@ -27,6 +27,8 @@ class Card(object):
         t1 = self.suit, self.rank
         t2 = other.suit, other.rank
         return cmp(t1, t2)
+    def count_value(self):
+        
 
 
 class Deck(object):
@@ -148,19 +150,20 @@ class Game(object):
         hand = Hand()
         card = Card()
         if raw_input("Do you want to play? (Y) or (N) ") == 'Y':
+            deck.shuffle()
             deck.move_cards(hand, 2)
             #creating starting hand
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
+            print hand
             #making hand.cards list into string to print
-            raw_input("Would you like to hit? (Y) or (N) ")
-                if raw_input == 'Y':
-                    deck.move_cards(hand, 1)
-                    print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
-                else:
-                    score = 0 #determine how close to 21
-                    for card in hand.cards:
-                        score += card.rank
-                    print "Your score: %d" % (score) #too high, indices of face cards wrong
+            if raw_input("Would you like to hit? (Y) or (N) ") == "Y":
+                deck.move_cards(hand, 1)
+                print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+            else:
+                score = 0 #determine how close to 21
+                for card in hand.cards:
+                    score += card.rank
+                print "Your score: %d" % (score) #too high, indices of face cards wrong
         else:
             print "Guess you won't play with us :("
 
