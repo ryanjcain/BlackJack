@@ -103,7 +103,7 @@ class Dealer(Deck):
         self.cards = []
         self.label = label
 
-class Shoe(object):
+class Shoe(Deck):
     """ The shoe object is a collection of 6 decks """
 
     def __init__(
@@ -111,29 +111,20 @@ class Shoe(object):
         deck4=Deck(), deck5=Deck(), deck6=Deck()
         ):
 
-        self.deck1 = deck1
-        self.deck2 = deck2
-        self.deck3 = deck3
-        self.deck4 = deck4
+        deck_list = [deck1,deck2,deck3,deck4]
 
-        deck1.shuffle()
-        deck2.shuffle()
-        deck3.shuffle()
-        deck4.shuffle()
+        self.cards = []
+        for deck in deck_list:
+            for card in deck.cards:
+                self.cards.append(card)
 
-        self.cards = [
-            deck1.cards,
-            deck2.cards,
-            deck3.cards,
-            deck4.cards
-                    ]
 
     def __str__(self):
         res = []
-        for deck in self.cards:
-            for card in deck:
-                res.append(str(card))
+        for card in self.cards:
+            res.append(str(card))
         return '\n'.join(res)
+
 
 class Game(object):
     def __init__(
@@ -144,7 +135,7 @@ class Game(object):
         '''
 
     def play(self):
-        deck = Deck()
+        deck = Shoe()
         hand = Hand()
         card = Card()
         if raw_input("Do you want to play? (Y) or (N) ") == 'Y':
@@ -169,9 +160,10 @@ class Game(object):
 
 game = Game()
 hand = Hand()
-deck = Deck()
-new_deck = deck.shuffle(hand)
+deck = Shoe
+new_deck = deck.shuffle()
 print new_deck
+
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
