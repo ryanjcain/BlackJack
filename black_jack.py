@@ -131,7 +131,7 @@ class Game(object):
     self, player = Player(), shoe = Shoe(), dealer = Dealer(), hand = Hand()
     ):
         print '''
-        Welcome to Casino!
+        Welcome to the Casino!
         '''
 
     def play(self):
