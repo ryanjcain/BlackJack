@@ -103,7 +103,7 @@ class Dealer(Deck):
         self.cards = []
         self.label = label
 
-class Shoe(object):
+class Shoe(Deck):
     """ The shoe object is a collection of 6 decks """
 
     def __init__(
@@ -111,29 +111,20 @@ class Shoe(object):
         deck4=Deck(), deck5=Deck(), deck6=Deck()
         ):
 
-        self.deck1 = deck1
-        self.deck2 = deck2
-        self.deck3 = deck3
-        self.deck4 = deck4
+        deck_list = [deck1,deck2,deck3,deck4]
 
-        deck1.shuffle()
-        deck2.shuffle()
-        deck3.shuffle()
-        deck4.shuffle()
+        self.cards = []
+        for deck in deck_list:
+            for card in deck.cards:
+                self.cards.append(card)
 
-        self.cards = [
-            deck1.cards,
-            deck2.cards,
-            deck3.cards,
-            deck4.cards
-                    ]
 
     def __str__(self):
         res = []
-        for deck in self.cards:
-            for card in deck:
-                res.append(str(card))
+        for card in self.cards:
+            res.append(str(card))
         return '\n'.join(res)
+
 
 class Game(object):
     def __init__(
@@ -152,20 +143,20 @@ class Game(object):
             #creating starting hand
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
             #making hand.cards list into string to print
-            raw_input("Would you like to hit? (Y) or (N) ")
-                if raw_input == 'Y':
-                    deck.move_cards(hand, 1)
-                    print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
-                else:
-                    score = 0 #determine how close to 21
-                    for card in hand.cards:
-                        score += card.rank
-                    print "Your score: %d" % (score) #too high, indices of face cards wrong
+            if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
+
+                deck.move_cards(hand, 1)
+                print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+            else:
+                score = 0 #determine how close to 21
+                for card in hand.cards:
+                    score += card.rank
+                print "Your score: %d" % (score) #too high, indices of face cards wrong
         else:
             print "Guess you won't play with us :("
 
-game = Game()
-game.play()
+#game = Game()
+#game.play()
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
