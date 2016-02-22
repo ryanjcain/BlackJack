@@ -143,8 +143,13 @@ class Shoe(object):
         return '\n'.join(res)
 
 class Game(object):
+    def __init__(self):
+        print '''
+        Welcome to your Blackjack game!
+        '''
+        # Your hand is: %d, %d" % Hand().self.cards[0], Hand().UI.cards[1]
+game = Game()
 
-    # print "your hand is: %d, %d" % Hand().self.cards[0], Hand().UI.cards[1]
 
 
 def find_defining_class(obj, method_name):
@@ -160,9 +165,6 @@ def find_defining_class(obj, method_name):
             return ty
     return None
 
-
-test_shoe = Shoe()
-print test_shoe
 
 """
 git add <file name> or -A or .
