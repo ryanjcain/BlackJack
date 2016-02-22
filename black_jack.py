@@ -152,12 +152,15 @@ class Game(object):
             #creating starting hand
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
             #making hand.cards list into string to print
-            raw_input("Would you like to hit? (Y) or (N) ")
-                if raw_input == 'Y':
+            score = 0
+            while score < 21:
+                if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
                     deck.move_cards(hand, 1)
                     print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+                    for card in hand.cards:
+                        score += card.rank
                 else:
-                    score = 0 #determine how close to 21
+                    #determine how close to 21
                     for card in hand.cards:
                         score += card.rank
                     print "Your score: %d" % (score) #too high, indices of face cards wrong
@@ -165,7 +168,10 @@ class Game(object):
             print "Guess you won't play with us :("
 
 game = Game()
-game.play()
+hand = Hand()
+deck = Deck()
+new_deck = deck.shuffle(hand)
+print new_deck
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
