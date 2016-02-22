@@ -137,11 +137,13 @@ class Game(object):
     def play(self):
         shoe = Shoe()
         hand = Hand()
+        house_hand = Hand()
         card = Card()
         score = 0 #determine how close to 21
         if raw_input("Do you want to play? (Y) or (N) ") == 'Y':
             shoe.shuffle()
             shoe.move_cards(hand, 2)
+            shoe.move_cards(house_hand, 2)
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
             #making hand.cards list into string to print
 
@@ -154,7 +156,37 @@ class Game(object):
 
             #Player plays until they either call or bust.
             while score < 21:
-                if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
+                '''
+                while loop:
+                    split
+                    double down
+                    hit
+                    call
+                '''
+                if hand.cards[0] == hand.cards[1]:
+                    if raw_input("Would you like to split? (Y) or (N)") == 'Y':
+                        #split makes two separate hands, how to incorporate into hit?
+                        hand_1 = hand.cards[0]
+                        shoe.move_cards(hand_1, 1)
+                        hand_2 = hand.cards[1]
+                        shoe.move_cards(hand_2, 1)
+                        print "These are your new hands: %s, %s" % (
+                        ', '.join(map(str, hand_1)),
+                        ', '.join(map(str, hand_2))
+                        )
+                elif len(hand.cards) < 3 and raw_input("Would you like to double down? (Y) or (N) ") == 'Y':
+                    #double down only works on first turn, hits once and exits while loop
+                    shoe.move_cards(hand, 1)
+                    print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+                    score = 0
+                    for card in hand.cards:
+                        if card.rank > 10:
+                            card.rank = 10 #accounts for face cards
+                        score += card.rank
+                    print "Your score is %d" % (score)
+                    break
+                elif raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
+                    #hit adds one card to hand
                     shoe.move_cards(hand, 1)
                     print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
                 else:
@@ -169,9 +201,36 @@ class Game(object):
                 print "Your score is %d" % (score)
 
             if score == 21:
-                print "21!"
+                print "You win!"
+                return
             elif score > 21:
                 print "You bust :("
+
+            #stay for player, now dealer's turn
+            house_score = 0
+            for card in house_hand.cards:
+                if card.rank > 10:
+                    card.rank = 10 #accounts for face cards
+                house_score += card.rank
+            print "House has %s. House score is %d." % (', '.join(map(str, house_hand.cards)), house_score)
+
+            if house_score == 21:
+                print "House wins!"
+            elif house_score < 17:
+                shoe.move_cards(house_hand, 1)
+                #recalculating house_score
+                for card in house_hand.cards:
+                    if card.rank > 10:
+                        card.rank = 10 #accounts for face cards
+                    house_score += card.rank
+                print "House hit. House score is %d." % house_score
+                if house_score == 21:
+                    print "House wins!"
+                elif house_score > score and house_score < 21:
+                    print "House wins!"
+                else:
+                    print "You win!"
+
         else:
             print "Guess you won't play with us :("
 
