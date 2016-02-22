@@ -92,7 +92,6 @@ class Hand(Deck):
         self.label = label
 
 
-
 class Player(Deck):
     """Represents a player in the blackjack game"""
 
@@ -142,14 +141,34 @@ class Shoe(object):
         return '\n'.join(res)
 
 class Game(object):
-    def __init__(self):
+    def __init__(
+    self, player = Player(), shoe = Shoe(), dealer = Dealer(), hand = Hand()
+    ):
         print '''
-        Welcome to your Blackjack game!
+        Welcome to Casino!
         '''
-        # Your hand is: %d, %d" % Hand().self.cards[0], Hand().UI.cards[1]
+
+    def play(self):
+        deck = Deck()
+        hand = Hand()
+        card = Card()
+        if raw_input("Do you want to play? (Y) or (N) ") == 'Y':
+            deck.move_cards(hand, 2)
+            print "Here's your starting hand: %s, %s" % (hand.cards[0], hand.cards[1])
+            raw_input("Would you like to hit? (Y) or (N) ")
+                if raw_input == 'Y':
+                    deck.move_cards(hand, 1)
+                    print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+                else:
+                    score = 0
+                    for card in hand.cards:
+                        score += card.rank
+                    print "Your score: %d" % (score) #too high, indices of face cards wrong
+        else:
+            print "Guess you won't play with us :("
+
 game = Game()
-
-
+game.play()
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
