@@ -155,6 +155,10 @@ class Game(object):
                 for card in hand.cards:
                     score += card.rank
                 print "Your score is %d" % (score) #too high, indices of face cards wrong
+            if score == 21:
+                print "You win!"
+            elif score > 21:
+                print "You bust :("
         else:
             print "Guess you won't play with us :("
 
