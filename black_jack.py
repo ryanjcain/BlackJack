@@ -141,6 +141,14 @@ class Shoe(object):
                 res.append(str(card))
         return '\n'.join(res)
 
+class Game(object):
+    def __init__(self):
+        print '''
+        Welcome to your Blackjack game!
+        '''
+        # Your hand is: %d, %d" % Hand().self.cards[0], Hand().UI.cards[1]
+game = Game()
+
 
 
 def find_defining_class(obj, method_name):
@@ -155,22 +163,6 @@ def find_defining_class(obj, method_name):
         if method_name in ty.__dict__:
             return ty
     return None
-
-
-if __name__ == '__main__':
-    deck = Deck()
-    deck.shuffle()
-
-    hand = Hand()
-    print find_defining_class(hand, 'shuffle')
-
-    deck.move_cards(hand, 2)
-    hand.sort()
-    print hand
-
-
-test_shoe = Shoe()
-print test_shoe
 
 
 """
