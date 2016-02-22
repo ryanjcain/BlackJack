@@ -149,13 +149,15 @@ class Game(object):
         card = Card()
         if raw_input("Do you want to play? (Y) or (N) ") == 'Y':
             deck.move_cards(hand, 2)
-            print "Here's your starting hand: %s, %s" % (hand.cards[0], hand.cards[1])
+            #creating starting hand
+            print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
+            #making hand.cards list into string to print
             raw_input("Would you like to hit? (Y) or (N) ")
                 if raw_input == 'Y':
                     deck.move_cards(hand, 1)
                     print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
                 else:
-                    score = 0
+                    score = 0 #determine how close to 21
                     for card in hand.cards:
                         score += card.rank
                     print "Your score: %d" % (score) #too high, indices of face cards wrong
