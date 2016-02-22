@@ -135,14 +135,20 @@ class Game(object):
         '''
 
     def play(self):
+<<<<<<< HEAD
         deck = Shoe()
+=======
+        shoe = Shoe()
+>>>>>>> master
         hand = Hand()
         card = Card()
+        score = 0 #determine how close to 21
         if raw_input("Do you want to play? (Y) or (N) ") == 'Y':
-            deck.move_cards(hand, 2)
-            #creating starting hand
+            shoe.shuffle()
+            shoe.move_cards(hand, 2)
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
             #making hand.cards list into string to print
+<<<<<<< HEAD
             score = 0
             while score < 50:
                 if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
@@ -155,12 +161,28 @@ class Game(object):
                     for card in hand.cards:
                         score += card.rank
                     print "Your score: %d" % (score) #too high, indices of face cards wrong
+=======
+            for card in hand.cards:
+                score += card.rank
+            print "Your score is %d" % (score) #too high, indices of face cards wrong
+            while score < 21:
+                if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
+                    shoe.move_cards(hand, 1)
+                    print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+                score = 0
+                for card in hand.cards:
+                    score += card.rank
+                print "Your score is %d" % (score) #too high, indices of face cards wrong
+>>>>>>> master
         else:
             print "Guess you won't play with us :("
 
 game = Game()
 game.play()
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
