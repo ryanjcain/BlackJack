@@ -138,27 +138,42 @@ class Game(object):
         shoe = Shoe()
         hand = Hand()
         card = Card()
-        score = 0
+        score = 0 #determine how close to 21
         if raw_input("Do you want to play? (Y) or (N) ") == 'Y':
             shoe.shuffle()
             shoe.move_cards(hand, 2)
-            #creating starting hand
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
             #making hand.cards list into string to print
 
+            #Initialize player's score
+            for card in hand.cards:
+                if card.rank > 10:
+                    card.rank = 10
+                score += card.rank
+            print "Your score is %d" % (score) #too high, indices of face cards wrong
+
+            #Player plays until they either call or bust.
             while score < 21:
                 if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
                     shoe.move_cards(hand, 1)
                     print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
+                else:
+                    break
 
-                    for card in hand.cards:
-                        if card.rank = 
-                        score += card.rank
-            else:
-                score = 0 #determine how close to 21
+                #Recalculate the score with the new card in hand
+                score = 0
                 for card in hand.cards:
+                    if card.rank > 10:
+                        card.rank = 10
                     score += card.rank
-                print "Your score: %d" % (score) #too high, indices of face cards wrong
+                print "Your score is %d" % (score) #too high, indices of face cards wrong
+
+
+
+            print "Sorry you busted!"
+
+
+
         else:
             print "Guess you won't play with us :("
 
