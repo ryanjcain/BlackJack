@@ -144,7 +144,7 @@ class Game(object):
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
             #making hand.cards list into string to print
             score = 0
-            while score < 21:
+            while score < 50:
                 if raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
                     deck.move_cards(hand, 1)
                     print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
@@ -159,10 +159,7 @@ class Game(object):
             print "Guess you won't play with us :("
 
 game = Game()
-hand = Hand()
-deck = Shoe
-new_deck = deck.shuffle()
-print new_deck
+game.play()
 
 
 def find_defining_class(obj, method_name):
