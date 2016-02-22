@@ -1,7 +1,6 @@
 import random
 class Card(object):
     """Represents a standard playing card.
-
     Attributes:
       suit: integer 0-3
       rank: integer 1-13
@@ -22,7 +21,6 @@ class Card(object):
 
     def __cmp__(self, other):
         """Compares this card to other, first by suit, then rank.
-
         Returns a positive number if this > other; negative if other > this;
         and 0 if they are equivalent.
         """
@@ -33,7 +31,6 @@ class Card(object):
 
 class Deck(object):
     """Represents a deck of cards.
-
     Attributes:
       cards: list of Card objects.
     """
@@ -61,7 +58,6 @@ class Deck(object):
 
     def pop_card(self, i=-1):
         """Removes and returns a card from the deck.
-
         i: index of the card to pop; by default, pops the last card.
         """
         return self.cards.pop(i)
@@ -76,7 +72,6 @@ class Deck(object):
 
     def move_cards(self, hand, num):
         """Moves the given number of cards from the deck into the Hand.
-
         hand: destination Hand object
         num: integer number of cards to move
         """
@@ -176,7 +171,6 @@ def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
     the definition of method_name (as a string) if it is
     invoked on obj.
-
     obj: any python object
     method_name: string method name
     """
@@ -192,13 +186,9 @@ git commit -m "Message"
 git commit (Creates a multi-line comment, use esc :wq to finish)
 git push
 git pull
-
-
 git status
 git branch
 git branch <new branch name>
-
 git checkout <branch name>
-
 git merge <origin repository>
 """
