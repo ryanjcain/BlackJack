@@ -143,11 +143,9 @@ class Shoe(object):
         return '\n'.join(res)
 
 class Game(object):
-    def __init__(self, label=''):
-        self.cards = []
-        self.label = label
-        
-    print "your hand is: %d, %d" % Hand().self.cards[0], Hand().UI.cards[1]
+
+    # print "your hand is: %d, %d" % Hand().self.cards[0], Hand().UI.cards[1]
+
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide
@@ -161,18 +159,6 @@ def find_defining_class(obj, method_name):
         if method_name in ty.__dict__:
             return ty
     return None
-
-
-if __name__ == '__main__':
-    deck = Deck()
-    deck.shuffle()
-
-    hand = Hand()
-    print find_defining_class(hand, 'shuffle')
-
-    deck.move_cards(hand, 2)
-    hand.sort()
-    print hand
 
 
 test_shoe = Shoe()
