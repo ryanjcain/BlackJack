@@ -145,6 +145,7 @@ class Game(object):
             shoe.move_cards(hand, 2)
             shoe.move_cards(house_hand, 2)
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
+            print  "The dealer shows a: %s" % (str(house_hand.cards[1]))
             #making hand.cards list into string to print
 
             #Initialize player's score
@@ -200,6 +201,7 @@ class Game(object):
                     score += card.rank
                 print "Your score is %d" % (score)
 
+            #Check the score outside of the while loop for players turn
             if score == 21:
                 print "You win!"
                 return
