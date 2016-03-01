@@ -86,6 +86,16 @@ class Hand(Deck):
         self.cards = []
         self.label = label
 
+    def score(self):
+        #Calculate and return the point equivalent in a hand
+        #Works for both soft and hard hands
+        score = 0
+        for card in self.cards:
+            if card.rank > 10:
+                card.rank = 10
+            score += card.rank
+        return score
+
 
 class Player(Deck):
     """Represents a player in the blackjack game"""
@@ -127,11 +137,9 @@ class Shoe(Deck):
 
 
 class Game(object):
-    def __init__(
-    self, player = Player(), shoe = Shoe(), dealer = Dealer(), hand = Hand()
-    ):
+    def __init__(self):
         print '''
-        Welcome to the Casino!
+        Welcome to Casino!
         '''
 
     def play(self):
@@ -145,18 +153,13 @@ class Game(object):
             shoe.move_cards(hand, 2)
             shoe.move_cards(house_hand, 2)
             print "Here's your starting hand: %s" % (', '.join(map(str, hand.cards)))
-            print  "The dealer shows a: %s" % (str(house_hand.cards[1]))
             #making hand.cards list into string to print
 
             #Initialize player's score
-            for card in hand.cards:
-                if card.rank > 10:
-                    card.rank = 10
-                score += card.rank
-            print "Your score is %d" % (score) #too high, indices of face cards wrong
+            print "Your score is %d" % (hand.score()) #too high, indices of face cards wrong
 
             #Player plays until they either call or bust.
-            while score < 21:
+            while hand.score() < 21:
                 '''
                 while loop:
                     split
@@ -179,12 +182,8 @@ class Game(object):
                     #double down only works on first turn, hits once and exits while loop
                     shoe.move_cards(hand, 1)
                     print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
-                    score = 0
-                    for card in hand.cards:
-                        if card.rank > 10:
-                            card.rank = 10 #accounts for face cards
-                        score += card.rank
-                    print "Your score is %d" % (score)
+                    #Recalculate player score:
+                    print "Your final score is: %d" % (hand.score())
                     break
                 elif raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
                     #hit adds one card to hand
@@ -194,19 +193,12 @@ class Game(object):
                     break
 
                 #Recalculate the score with the new card in hand
-                score = 0
-                for card in hand.cards:
-                    if card.rank > 10:
-                        card.rank = 10 #accounts for face cards
-                    score += card.rank
-                print "Your score is %d" % (score)
+                print "Your score is %d" % (hand.score())
 
-            #Check the score outside of the while loop for players turn
-            if score == 21:
+            if hand.score() == 21:
                 print "You win!"
-                return
-            elif score > 21:
-                print "You bust :("
+            elif hand.score() > 21:
+                print "You bust D:"
 
             #stay for player, now dealer's turn
             house_score = 0
