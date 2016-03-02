@@ -227,8 +227,11 @@ class Game(object):
             else:
                 print "You win!"
 
-        else:
+        elif raw_input("Do you want to play? (Y) or (N) ") == 'N':
             print "Guess you won't play with us :("
+
+        else:
+            print "Please type a 'Y' or 'N,' silly!"
 
 game = Game()
 game.play()
