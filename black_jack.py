@@ -86,6 +86,21 @@ class Hand(Deck):
         self.cards = []
         self.label = label
 
+    def score(self):
+        #Calculate and return the point equivalent in a hand
+        score = 0
+        for card in self.cards:
+            if card.rank > 10:
+                card.rank = 10
+            score += card.rank
+
+        #Check for a Hard and Soft hand:
+        if score > 21:
+            for card in self.cards:
+                if card.rank == 1:
+                    score -= 10
+        return score
+
 
 class Player(Deck):
     """Represents a player in the blackjack game"""
@@ -127,9 +142,7 @@ class Shoe(Deck):
 
 
 class Game(object):
-    def __init__(
-    self, player = Player(), shoe = Shoe(), dealer = Dealer(), hand = Hand()
-    ):
+    def __init__(self):
         print '''
         Welcome to Casino!
         '''
@@ -148,14 +161,10 @@ class Game(object):
             #making hand.cards list into string to print
 
             #Initialize player's score
-            for card in hand.cards:
-                if card.rank > 10:
-                    card.rank = 10
-                score += card.rank
-            print "Your score is %d" % (score) #too high, indices of face cards wrong
+            print "Your score is %d" % (hand.score()) #too high, indices of face cards wrong
 
             #Player plays until they either call or bust.
-            while score < 21:
+            while hand.score() < 21:
                 '''
                 while loop:
                     split
@@ -178,12 +187,8 @@ class Game(object):
                     #double down only works on first turn, hits once and exits while loop
                     shoe.move_cards(hand, 1)
                     print "Now here's your hand: %s" % (', '.join(map(str, hand.cards)))
-                    score = 0
-                    for card in hand.cards:
-                        if card.rank > 10:
-                            card.rank = 10 #accounts for face cards
-                        score += card.rank
-                    print "Your score is %d" % (score)
+                    #Recalculate player score:
+                    print "Your final score is: %d" % (hand.score())
                     break
                 elif raw_input("Would you like to hit? (Y) or (N) ") == 'Y':
                     #hit adds one card to hand
@@ -193,43 +198,34 @@ class Game(object):
                     break
 
                 #Recalculate the score with the new card in hand
-                score = 0
-                for card in hand.cards:
-                    if card.rank > 10:
-                        card.rank = 10 #accounts for face cards
-                    score += card.rank
-                print "Your score is %d" % (score)
+                print "Your score is %d" % (hand.score())
 
-            if score == 21:
+            if hand.score() == 21:
                 print "You win!"
-                return
-            elif score > 21:
-                print "You bust :("
+            elif hand.score() > 21:
+                print "You bust D:"
 
-            #stay for player, now dealer's turn
-            house_score = 0
-            for card in house_hand.cards:
-                if card.rank > 10:
-                    card.rank = 10 #accounts for face cards
-                house_score += card.rank
+            #Dealer Turn:
+            house_score = house_hand.score()
             print "House has %s. House score is %d." % (', '.join(map(str, house_hand.cards)), house_score)
 
-            if house_score == 21:
-                print "House wins!"
-            elif house_score < 17:
+
+            while house_hand.score() < 16:
+                #House Hit:
                 shoe.move_cards(house_hand, 1)
-                #recalculating house_score
-                for card in house_hand.cards:
-                    if card.rank > 10:
-                        card.rank = 10 #accounts for face cards
-                    house_score += card.rank
-                print "House hit. House score is %d." % house_score
-                if house_score == 21:
-                    print "House wins!"
-                elif house_score > score and house_score < 21:
-                    print "House wins!"
-                else:
-                    print "You win!"
+                print "House hit. House score is %d." % house_hand.score()
+
+
+            #Final dealer score:
+            f_house_score = house_hand.score()
+            if f_house_score > 21:
+                print "You win! Dealer busts!"
+            elif f_house_score == 21 and hand.score() == 21:
+                print "It's a draw!"
+            elif f_house_score > hand.score():
+                print "House wins!"
+            else:
+                print "You win!"
 
         elif raw_input("Do you want to play? (Y) or (N) ") == 'N':
             print "Guess you won't play with us :("
