@@ -218,11 +218,11 @@ class Game(object):
 
             #Final dealer score:
             f_house_score = house_hand.score()
-            if f_house_score > 21:
+            if f_house_score > 21 and hand.score() <= 21:
                 print "You win! Dealer busts!"
             elif f_house_score == 21 and hand.score() == 21:
                 print "It's a draw!"
-            elif f_house_score > hand.score():
+            elif f_house_score > hand.score() and f_house_score <= 21 and hand.score() <= 21:
                 print "House wins!"
             else:
                 print "You win!"
